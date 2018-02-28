@@ -2,38 +2,65 @@
 
 import * as ReasonReact from "reason-react/src/ReasonReact.js";
 import * as Victory$ReactTemplate from "./Victory.bs.js";
+import * as Material from "victory-core/es/victory-theme/material";
 
 var component = ReasonReact.statelessComponent("Page");
+
+function xAxisFormatter(x) {
+  return "Q " + x.toString();
+}
+
+function yAxisFormatter(y) {
+  return (y / 1000 | 0).toString() + "k";
+}
+
+var data = /* array */[
+  {
+    x: 1,
+    y: 13000
+  },
+  {
+    x: 2,
+    y: 16500
+  },
+  {
+    x: 3,
+    y: 14250
+  },
+  {
+    x: 4,
+    y: 19000
+  }
+];
 
 function make() {
   var newrecord = component.slice();
   newrecord[/* render */9] = (function () {
-      var data = /* array */[
-        {
-          x: 1,
-          y: 13000
-        },
-        {
-          x: 2,
-          y: 16500
-        },
-        {
-          x: 3,
-          y: 14250
-        },
-        {
-          x: 4,
-          y: 19000
-        }
-      ];
-      console.log(data);
-      return ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* None */0, /* array */[]));
+      console.log(Material.default);
+      return ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryChart[/* make */0](/* Some */[20], /* Some */[Material.default], /* array */[
+                      ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryAxis[/* make */0](/* Some */[/* int array */[
+                                  1,
+                                  2,
+                                  3,
+                                  4
+                                ]], /* Some */[xAxisFormatter], /* None */0, /* array */[])),
+                      ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryAxis[/* make */0](/* None */0, /* Some */[yAxisFormatter], /* Some */[/* true */1], /* array */[])),
+                      ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryStack[/* make */0](/* Some */["warm"], /* array */[
+                                ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* Some */[data], /* array */[])),
+                                ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* Some */[data], /* array */[])),
+                                ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* Some */[data], /* array */[])),
+                                ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* Some */[data], /* array */[]))
+                              ]))
+                    ]));
     });
   return newrecord;
 }
 
 export {
   component ,
+  xAxisFormatter ,
+  yAxisFormatter ,
+  data ,
   make ,
   
 }

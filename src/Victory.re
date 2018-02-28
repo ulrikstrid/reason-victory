@@ -4,19 +4,23 @@ type victoryData = {
   "y": int
 };
 
+module VictoryTheme = {
+  type t;
+  [@bs.module "victory-core/es/victory-theme/material"] [@bs.val]
+  external material : t = "default";
+  [@bs.module "victory-core/es/victory-theme/grayscale"] [@bs.val]
+  external grayscale : t = "default";
+};
+
 module VictoryBar = {
   [@bs.module "victory"]
   external victoryBar : ReasonReact.reactClass = "VictoryBar";
-  let make = (~data: option(array(victoryData))=?, children) => {
-    Js.log(data);
+  let make = (~data: option(array(victoryData))=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryBar,
-      ~props={
-        "data": Js.Undefined.fromOption(data)
-      },
+      ~props={"data": Js.Undefined.fromOption(data)},
       children
     );
-  }
 };
 
 module VictoryStack = {
@@ -25,7 +29,7 @@ module VictoryStack = {
   let make = (~colorScale=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryStack,
-      ~props={"colorScale": colorScale},
+      ~props={"colorScale": Js.Undefined.fromOption(colorScale)},
       children
     );
 };
@@ -33,10 +37,13 @@ module VictoryStack = {
 module VictoryChart = {
   [@bs.module "victory"]
   external victoryChart : ReasonReact.reactClass = "VictoryChart";
-  let make = (~domainPadding=?, children) =>
+  let make = (~domainPadding=?, ~theme: option(VictoryTheme.t)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryChart,
-      ~props={"domainPadding": domainPadding},
+      ~props={
+        "domainPadding": Js.Undefined.fromOption(domainPadding),
+        "theme": Js.Undefined.fromOption(theme)
+      },
       children
     );
 };
@@ -44,13 +51,19 @@ module VictoryChart = {
 module VictoryAxis = {
   [@bs.module "victory"]
   external victoryAxis : ReasonReact.reactClass = "VictoryAxis";
-  let make = (~tickValues=?, ~tickFormat=?, ~dependentAxis=?, children) =>
+  let make =
+      (
+        ~tickValues=?,
+        ~tickFormat: option('a => string)=?,
+        ~dependentAxis: option(bool)=?,
+        children
+      ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryAxis,
       ~props={
-        "tickValues": tickValues,
-        "tickFormat": tickFormat,
-        "dependentAxis": dependentAxis
+        "tickValues": Js.Undefined.fromOption(tickValues),
+        "tickFormat": Js.Undefined.fromOption(tickFormat),
+        "dependentAxis": Js.Undefined.fromOption(dependentAxis)
       },
       children
     );

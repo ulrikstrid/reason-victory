@@ -4,8 +4,9 @@ import * as Victory from "victory";
 import * as ReasonReact from "reason-react/src/ReasonReact.js";
 import * as Js_undefined from "bs-platform/lib/es6/js_undefined.js";
 
+var VictoryTheme = /* module */[];
+
 function make(data, children) {
-  console.log(data);
   return ReasonReact.wrapJsForReason(Victory.VictoryBar, {
               data: Js_undefined.fromOption(data)
             }, children);
@@ -15,15 +16,16 @@ var VictoryBar = /* module */[/* make */make];
 
 function make$1(colorScale, children) {
   return ReasonReact.wrapJsForReason(Victory.VictoryStack, {
-              colorScale: colorScale
+              colorScale: Js_undefined.fromOption(colorScale)
             }, children);
 }
 
 var VictoryStack = /* module */[/* make */make$1];
 
-function make$2(domainPadding, children) {
+function make$2(domainPadding, theme, children) {
   return ReasonReact.wrapJsForReason(Victory.VictoryChart, {
-              domainPadding: domainPadding
+              domainPadding: Js_undefined.fromOption(domainPadding),
+              theme: Js_undefined.fromOption(theme)
             }, children);
 }
 
@@ -31,15 +33,16 @@ var VictoryChart = /* module */[/* make */make$2];
 
 function make$3(tickValues, tickFormat, dependentAxis, children) {
   return ReasonReact.wrapJsForReason(Victory.VictoryAxis, {
-              tickValues: tickValues,
-              tickFormat: tickFormat,
-              dependentAxis: dependentAxis
+              tickValues: Js_undefined.fromOption(tickValues),
+              tickFormat: Js_undefined.fromOption(tickFormat),
+              dependentAxis: Js_undefined.fromOption(dependentAxis)
             }, children);
 }
 
 var VictoryAxis = /* module */[/* make */make$3];
 
 export {
+  VictoryTheme ,
   VictoryBar ,
   VictoryStack ,
   VictoryChart ,
