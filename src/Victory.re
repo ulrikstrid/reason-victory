@@ -1,16 +1,22 @@
+type victoryData = {
+  .
+  "x": int,
+  "y": int
+};
+
 module VictoryBar = {
   [@bs.module "victory"]
   external victoryBar : ReasonReact.reactClass = "VictoryBar";
-  let make = (~data=?, ~x=?, ~y=?, children) =>
+  let make = (~data: option(array(victoryData))=?, children) => {
+    Js.log(data);
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryBar,
       ~props={
-        "data": Js.Undefined.from_opt(data),
-        "x": Js.Undefined.from_opt(x),
-        "y": Js.Undefined.from_opt(y)
+        "data": Js.Undefined.fromOption(data)
       },
       children
     );
+  }
 };
 
 module VictoryStack = {
