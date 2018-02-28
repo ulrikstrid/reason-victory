@@ -41,12 +41,24 @@ function make$3(tickValues, tickFormat, dependentAxis, children) {
 
 var VictoryAxis = /* module */[/* make */make$3];
 
+function make$4(animate, data, $staropt$star, children) {
+  var interpolation = $staropt$star ? $staropt$star[0] : "linear";
+  return ReasonReact.wrapJsForReason(Victory.VictoryArea, {
+              animate: Js_undefined.fromOption(animate),
+              data: Js_undefined.fromOption(data),
+              interpolation: interpolation
+            }, children);
+}
+
+var VictoryArea = /* module */[/* make */make$4];
+
 export {
   VictoryTheme ,
   VictoryBar ,
   VictoryStack ,
   VictoryChart ,
   VictoryAxis ,
+  VictoryArea ,
   
 }
 /* victory Not a pure module */

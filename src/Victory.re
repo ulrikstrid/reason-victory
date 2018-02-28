@@ -68,3 +68,18 @@ module VictoryAxis = {
       children
     );
 };
+
+module VictoryArea = {
+  [@bs.module "victory"]
+  external victoryArea : ReasonReact.reactClass = "VictoryArea";
+  let make = (~animate=?, ~data=?, ~interpolation="linear", children) =>
+    ReasonReact.wrapJsForReason(
+      ~reactClass=victoryArea,
+      ~props={
+        "animate": Js.Undefined.fromOption(animate),
+        "data": Js.Undefined.fromOption(data),
+        "interpolation": interpolation
+      },
+      children
+    );
+};
