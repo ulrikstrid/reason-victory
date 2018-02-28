@@ -1,10 +1,14 @@
 module VictoryBar = {
   [@bs.module "victory"]
   external victoryBar : ReasonReact.reactClass = "VictoryBar";
-  let make = (~data=?, children) =>
+  let make = (~data=?, ~x=?, ~y=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass=victoryBar,
-      ~props={"data": data},
+      ~props={
+        "data": Js.Undefined.from_opt(data),
+        "x": Js.Undefined.from_opt(x),
+        "y": Js.Undefined.from_opt(y)
+      },
       children
     );
 };

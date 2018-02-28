@@ -3,10 +3,13 @@
 
 var Victory = require("victory");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Js_undefined = require("bs-platform/lib/js/js_undefined.js");
 
-function make(data, children) {
+function make(data, x, y, children) {
   return ReasonReact.wrapJsForReason(Victory.VictoryBar, {
-              data: data
+              data: Js_undefined.from_opt(data),
+              x: Js_undefined.from_opt(x),
+              y: Js_undefined.from_opt(y)
             }, children);
 }
 

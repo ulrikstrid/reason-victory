@@ -9,7 +9,26 @@ var component = ReasonReact.statelessComponent("Page");
 function make() {
   var newrecord = component.slice();
   newrecord[/* render */9] = (function () {
-      return ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* None */0, /* array */[]));
+      var data = /* array */[
+        {
+          x: 1,
+          y: 13000
+        },
+        {
+          x: 2,
+          y: 16500
+        },
+        {
+          x: 3,
+          y: 14250
+        },
+        {
+          x: 4,
+          y: 19000
+        }
+      ];
+      console.log(data);
+      return ReasonReact.element(/* None */0, /* None */0, Victory$ReactTemplate.VictoryBar[/* make */0](/* None */0, /* None */0, /* None */0, /* array */[]));
     });
   return newrecord;
 }
