@@ -8,5 +8,11 @@ module.exports = {
     publicPath: outputDir,
     filename: "Index.js"
   },
-  mode: "development"
+  mode: "development",
+  devServer: {
+    contentBase: path.join(__dirname, "build"),
+    compress: true,
+    port: 9000,
+    historyApiFallback: true
+  }
 };
