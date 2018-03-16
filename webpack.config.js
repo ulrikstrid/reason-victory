@@ -7,7 +7,7 @@ module.exports = {
   entry: "./src/Index.bs.js",
   output: {
     path: outputDir,
-    publicPath: "/",
+    publicPath: "./",
     filename: "Index.js"
   },
   mode: "development",
